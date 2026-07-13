@@ -1,0 +1,47 @@
+# ---- Firebase Storage Security Rules ----
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isImage(file) {
+      return file.contentType.matches('image/.*');
+    }
+
+    function isDoc(file) {
+      return file.contentType.matches('application/.*') ||
+             file.contentType.matches('application/pdf');
+    }
+
+    // Avatars: any signed-in user may write to their own folder.
+    match /avatars/{uid}/{file=**} {
+      allow read: if true;
+      allow write: if isSignedIn() && request.auth.uid == uid && isImage(request.resource);
+    }
+
+    // Documents (admissions, assignments, certificates).
+    match /documents/{file=**} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && (isDoc(request.resource) || isImage(request.resource))
+                  && request.resource.size < 15 * 1024 * 1024;
+    }
+
+    match /assignments/{file=**} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && request.resource.size < 25 * 1024 * 1024;
+    }
+
+    match /gallery/{file=**} {
+      allow read: if true;
+      allow write: if isSignedIn() && isImage(request.resource);
+    }
+
+    match /{file=**} {
+      allow read, write: if false;
+    }
+  }
+}

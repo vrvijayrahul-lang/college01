@@ -1,0 +1,76 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "students",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "departmentId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "attendance",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "studentId", "order": "ASCENDING" },
+        { "fieldPath": "date", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "attendance",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "classId", "order": "ASCENDING" },
+        { "fieldPath": "date", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "fees",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "studentId", "order": "ASCENDING" },
+        { "fieldPath": "dueDate", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "applications",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "applications",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "results",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "studentId", "order": "ASCENDING" },
+        { "fieldPath": "examType", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "notices",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "published", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "events",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "startDate", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
