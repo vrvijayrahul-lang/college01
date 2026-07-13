@@ -1,0 +1,15 @@
+# Firebase Cloud Functions deploy separately via `firebase deploy`,
+# so they must not be bundled into the Next.js build on Vercel.
+functions
+scripts
+
+# Local / VCS noise
+.git
+.github
+.firebase
+.env*.local
+.next
+node_modules
+*.log
+firestore-debug.log
+ui-debug.log
